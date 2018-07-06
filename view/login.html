@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Grapes-Login</title>
+    <!-- Bootstrap core CSS-->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <link rel="icon" href="/login.jpg">
+    <link rel="stylesheet" href="/Project/css/login.css">
+    <style media="screen and (max-width:760px)">
+    .photo {
+      display: none;
+    }
+
+    section {
+      position:relative;
+      margin-top: 5%;
+      left: 25%;
+      width: 50%;
+    }
+    </style>
+    <style media="screen and (min-width:760px)">
+    body{
+      overflow: hidden;
+    }
+    section{
+      float: left;
+      margin: 80px 5%;
+      width: 40%;
+    }
+    .info {
+      margin-top: 8%;
+    }
+      .photo {
+        display: block;
+      }
+        .photo img{
+          width: 100%;
+          max-width: 600px;
+          height: auto;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="head">
+        <a href="login.html"><img src="/grapebg.png"> Grapes</a>
+      </div>
+    </header>
+    <section class="photo">
+      <img src="/login.jpg" alt="">
+    </section>
+    <section class="info">
+      <form class="form-signin" action="/login" method="post">
+        <div class="subtitle">
+          Sign In</div>
+        <input class="form-control" id="inputEmail" type="text" name="userID" placeholder="userID" required="" autofocus="">
+        <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" required="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Sign In</button>
+      </form>
+      <form class="form-signin" action="/register" method="get">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Register</button>
+      </form>
+    </section>
+    <footer>Grapes ⓣ 2018</footer>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
