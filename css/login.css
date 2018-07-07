@@ -1,0 +1,38 @@
+header {
+  height: 80px;
+  background: #8A2BE2;
+}
+header > .head {
+  position:relative;
+  padding-left: 15%;
+  padding-top: 20px;
+}
+header > .head > a{
+  color: white;
+  text-decoration: none;
+  font-size: 3em;
+}
+
+header > .head > a:hover {
+  cursor: pointer;
+}
+
+.subtitle {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+input, button {
+  margin-bottom: 15px;
+}
+
+footer {
+  position: relative;
+  border-top: 1px;
+  border-top-color: #DCDCDC;
+  border-top-style: solid;
+  margin-top: 100px;
+  padding-top: 10px;
+  text-align: center;
+    clear: both;
+}
