@@ -28,9 +28,16 @@ app.get('/',function(req,res){// 홈
 
 
 app.get('/login',function(req,res){//로그인
-  res.render('login.html');
+  res.render('login.html',{topics: 'value'});
 
 })
+app.post('/',function(req,res){// 홈에서 로그인 정보를 받음
+  var id = req.body.userID;
+
+  res.send('<h1>'+id+' 님 안녕하세요</h1>');
+
+})
+
 
 
 app.listen(3000,function(){// 3000번 포트 listen
