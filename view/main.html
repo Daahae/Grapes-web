@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grapes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Grape.png">
+    <!--css-->
+    <link rel="stylesheet" href="/init.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/dropdown.css">
+    <link rel="stylesheet" href="/section.css">
+    <style>
+      @import url("mainHalf.css") only screen and (min-width:768px);
+    </style>
+    <!--JS-->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
+    <script src="jquery.imagesloaded.min.js"></script>
+    <script src="mason.js"></script>
+    <script src="dropdown.js"></script>
+    <script src="imgLoaded.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="head">
+        <a href="main.html"><img src="/grapebg.png"></a>
+      </div>
+      <div class="header-search-form">
+            <form>
+                <input type="search" class="input-search" placeholder="검색"/>
+                <input type="submit" class="input-search-submit" value="" />
+            </form>
+      </div>
+      <div class="header-menu">
+            <ul class="outer-menu">
+                <li>
+                    <a href="#"><img src="setting.png" /></a>
+                    <ul class="inner-menu">
+                      <li><a href="#">내 정보</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- 본문 영역 -->
+    <section id="main-section">
+      <div class="paper">
+        <div class="paper-holder">
+          <a><img width=100%  src="welcome.jpg" /></a>
+        </div>
+        <p class="paper-description">Lorem ipsum dolor sit amet</p>
+        <div class="paper-content">
+          <a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a>
+          <p class="paper-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem mi, egestas a facilisis eget, egestas ut magna.</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

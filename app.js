@@ -16,13 +16,14 @@ app.use(static(path.join(__dirname,'/view')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('images'));//정적인 이미지 저장공간 접근 허용 images폴더
 app.use(express.static('css'));
+app.use(express.static('js'));
 //기본 설정들
 
 
 
 
 app.get('/',function(req,res){// 홈
-  res.send('<h1>Home Page</h1>');
+  res.redirect('main.html');
 
 })
 

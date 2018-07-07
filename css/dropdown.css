@@ -1,0 +1,29 @@
+.outer-menu{
+  float: left;
+  width: 100px; height: 20px;
+  line-height: 20px;
+  padding-top: 5px;
+  position: relative;
+  text-align: center;
+}
+.outer-menu:hover {cursor: pointer;}
+
+.inner-menu{
+  display: none;
+  width: 100%;
+
+  border-top: 1px solid #cccaca;
+  box-shadow: 0 2px 4px rgba(34,25,25,0.5);
+}
+
+.inner-menu a{
+  display: block;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-style:oblique;
+  z-index: 5000;
+  background-color: white;
+}
+.inner-menu a:hover{
+  background-color: #cccaca;
+}

@@ -1,0 +1,9 @@
+.photo {
+  display: none;
+}
+section {
+  position:relative;
+  margin-top: 5%;
+  left: 25%;
+  width: 50%;
+}
