@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -15,46 +15,19 @@
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="signin.css" rel="stylesheet">
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-    <link rel="icon" href="/login.jpg">
+    <link rel="icon" href="/Grape.png">
     <link rel="stylesheet" href="/login.css">
-    <style media="screen and (max-width:760px)">
-    .photo {
-      display: none;
-    }
 
-    section {
-      position:relative;
-      margin-top: 5%;
-      left: 25%;
-      width: 50%;
-    }
-    </style>
-    <style media="screen and (min-width:760px)">
-    body{
-      overflow: hidden;
-    }
-    section{
-      float: left;
-      margin: 80px 5%;
-      width: 40%;
-    }
-    .info {
-      margin-top: 8%;
-    }
-      .photo {
-        display: block;
-      }
-        .photo img{
-          width: 100%;
-          max-width: 600px;
-          height: auto;
-        }
+    <!--mediaQuery-->
+    <style>
+      @import url("loginHalf.css") only screen and (max-width:768px);
+      @import url("loginFull.css") only screen and (min-width:768px);
     </style>
   </head>
   <body>
     <header>
       <div class="head">
-        <a href="login.html"><img src="/grapebg.png"> Grapes</a>
+        <a href="main.html"><img src="/grapebg.png"> Grapes</a>
       </div>
     </header>
     <section class="photo">
