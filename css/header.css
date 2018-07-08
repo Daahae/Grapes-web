@@ -5,6 +5,7 @@ header {
   display: flex;
   position:fixed;
   float: left;
+  z-index: 9999;
 }
 .head {
   margin-left: 15px;
