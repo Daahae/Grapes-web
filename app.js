@@ -65,7 +65,48 @@ app.get('/login',function(req,res){//로그인
 
 app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 받음
 
-})
+  var sql = 'select id, password, name from account';// 이미지는 차후에
+  var cnt=0;
+
+  conn.query(sql, function(err, result, fields){
+    if(err){
+      console.log(err);
+      res.status(500).send('Internal Server Err');
+    }
+    console.log(result.length);
+
+
+      var myid = req.body.userID;//로그인 페이지에서 입력한 정보
+      var mypw = req.body.password;
+
+    for(var i=0; i<result.length;i++){//db에 있는 정보들과 대조
+      if(myid===result[i].id && mypw===result[i].password) {
+        // displayName 세션 생성 - 로그인 여부 확인
+          cnt = 1;
+        req.session.displayName = result[i].name;
+        req.session.save(() => {
+
+            res.redirect('/');
+
+        });
+
+      }
+    }
+      if(cnt == 0)// 로그인 실패시
+        res.redirect('/');
+
+    });
+});
+
+
+
+// Logout
+app.get('/logout', (req, res) => {
+  delete req.session.displayName;
+  req.session.save(() => {
+    res.redirect('/login');
+  });
+});
 
 
 
