@@ -12,7 +12,7 @@ var mysql = require('mysql');
 
 app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'html');//default엔진을 html로
 
 
 app.use(static(path.join(__dirname,'/view')));
@@ -48,6 +48,7 @@ app.get('/',function(req,res){// 홈
       res.render('main.html',{name:name});
 
     else {//로그인 기록이 없을 시
+
       res.redirect('/login');
     }
 
@@ -65,7 +66,7 @@ app.get('/login',function(req,res){//로그인
 
 app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 받음
 
-  var sql = 'select id, password, name from account';// 이미지는 차후에
+  var sql = 'select * from account';// 이미지는 차후에
   var cnt=0;
 
   conn.query(sql, function(err, result, fields){
@@ -79,10 +80,13 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
       var myid = req.body.userID;//로그인 페이지에서 입력한 정보
       var mypw = req.body.password;
 
+
     for(var i=0; i<result.length;i++){//db에 있는 정보들과 대조
       if(myid===result[i].id && mypw===result[i].password) {
         // displayName 세션 생성 - 로그인 여부 확인
           cnt = 1;
+        req.session.img = result[i].image;
+        req.session.userID = myid;// 세션에 올리기
         req.session.displayName = result[i].name;
         req.session.save(() => {
 
@@ -104,9 +108,19 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
 app.get('/logout', (req, res) => {
   delete req.session.displayName;
   req.session.save(() => {
-    res.redirect('/login');
+    res.render('login.html');
   });
 });
+
+app.get('/pom',function(req,res){// 새 글 쓰기
+  console.log(req.session.userID);
+  console.log(req.session.displayName);
+  console.log(req.session.img);
+
+  res.render('pom.html');
+});
+
+
 
 
 
