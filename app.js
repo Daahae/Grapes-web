@@ -112,7 +112,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.get('/pom',function(req,res){// 새 글 쓰기
+app.get('/pom',function(req,res){// 새 글쓰기
   console.log(req.session.userID);
   console.log(req.session.displayName);
   console.log(req.session.img);
@@ -120,6 +120,13 @@ app.get('/pom',function(req,res){// 새 글 쓰기
   res.render('pom.html');
 });
 
+app.get('/profile',function(req,res){// 내 정보 보기
+  var name = req.session.displayName;
+  var id = req.session.userID;
+  var img = req.session.img;
+
+  res.render('profile.html',{name: name, id:id, img:img});
+});
 
 
 
