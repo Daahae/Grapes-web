@@ -1,0 +1,51 @@
+div {
+  display: block;
+}
+#dummy-section {
+  margin:  auto;
+  padding: 8px 10px 0;
+  width: 600px;
+  height: 50px;
+}
+  #main-section {
+    margin: 10px auto;
+    padding: 10px;
+    width: 600px;
+    height: 450px;
+    background-color: white;
+  }
+  .profile-image {
+    float: left;
+    width: 60%;
+    height: 100%;
+  }
+  .profile-image > img {
+    width: 100%;
+    height: auto;
+  }
+  .profile-info {
+    position: relative;
+    float: right;
+    width: 38%;
+    height: 100%;
+    background-color: lightgrey;
+  }
+  .profile-info > p {
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+  #friend-section {
+    margin: 0px auto;
+    padding: 10px;
+    width: 600px;
+    height: 150px;
+    background-color: white;
+  }
+  .profile-friend {
+    clear: both;
+    text-align: left;
+    zoom: 1;
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+  }

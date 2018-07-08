@@ -6,7 +6,16 @@
   position: relative;
   text-align: center;
 }
+
 .outer-menu:hover {cursor: pointer;}
+
+.outer-menu:nth-child(1) > li {
+  padding-top: 5px;
+}
+
+.outer-menu > li > a {
+  color: white;
+}
 
 .inner-menu{
   display: none;

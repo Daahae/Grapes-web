@@ -3,7 +3,7 @@ header {
   height: 40px;
   width: 100%;
   display: flex;
-  position:relative;
+  position:fixed;
   float: left;
 }
 .head {
