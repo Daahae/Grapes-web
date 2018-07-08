@@ -24,7 +24,7 @@
   <body>
     <header>
       <div class="head">
-        <a href="main.html"><img src="/grapebg.png"></a>
+        <a href="/"><img src="/grapebg.png"></a>
       </div>
       <div class="header-search-form">
             <form>
@@ -34,16 +34,16 @@
       </div>
       <div class="header-menu">
         <ul class="outer-menu">
-            <li>
-                <a href="#"><%=id%></a>
-            </li>
-        </ul>
+             <li>
+                <pre>              <a href="/login"><%=name%></a></pre>
+             </li>
+         </ul>
             <ul class="outer-menu">
                 <li>
                     <a href="#"><img src="setting.png" /></a>
                     <ul class="inner-menu">
-                      <li><a href="#">내 정보</a></li>
-                        <li><a href="login.html">로그아웃</a></li>
+                        <li><a href="#"><%= name%>정보</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
                     </ul>
                 </li>
             </ul>
