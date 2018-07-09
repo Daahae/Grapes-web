@@ -38,7 +38,7 @@ div {
     margin: 0px auto;
     padding: 10px;
     width: 600px;
-    height: 350px;
+    height: 300px;
     background-color: white;
   }
   .profile-friend {
@@ -48,4 +48,37 @@ div {
     border-style: solid;
     width: 100%;
     height: 100%;
+  }
+  #control-section {
+    margin: 0px auto;
+    padding: 10px;
+    width: 600px;
+    height: 30px;
+    background-color: white;
+  }
+  .control-friend {
+    clear: both;
+    float: right;
+    margin: 0 auto;
+    zoom: 1;
+    border-style: solid;
+    width: 20%;
+    height: 100%;
+  }
+  .input-add-submit {
+    clear: both;
+    display: block;
+    margin-top: 3px;
+    width: 47%; height: 24px;
+    border-radius: 3px;
+    border: 1px solid #CCCCCC;
+    margin-left: 1%;
+    vertical-align: top;
+    display: inline-block;
+    cursor: pointer;
+    background-color: lightgrey;
+  }
+  .input-add-submit:nth-child(2) {
+    float: right;
+    margin-right: 1%;
   }

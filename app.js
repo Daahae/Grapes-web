@@ -18,7 +18,6 @@ app.set('views', __dirname + '/view');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');//default엔진을 html로
 
-
 app.use(static(path.join(__dirname,'/view')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('images'));//정적인 이미지 저장공간 접근 허용 images폴더
@@ -43,11 +42,9 @@ var conn = mysql.createConnection({//db계정 로그인
 conn.connect();
 //기본 설정들
 
-
-
-
 app.get('/',function(req,res){// 홈
     var name = req.session.displayName;
+
     if(name){//로그인했을시
 
     var sql = 'select * from article';
@@ -58,11 +55,10 @@ app.get('/',function(req,res){// 홈
       });
     }
 
-    else {//로그인 기록이 없을 시
 
+    else {//로그인 기록이 없을 시
       res.redirect('/login');
     }
-
 })
 
 
@@ -76,25 +72,19 @@ app.get('/login',function(req,res){//로그인
   } else {
     res.redirect('/');
   }
-
 });
 
 app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 받음
-
   var sql = 'select * from account';// 이미지는 차후에
   var cnt=0;
-
   conn.query(sql, function(err, result, fields){
     if(err){
       console.log(err);
       res.status(500).send('Internal Server Err');
     }
     console.log(result.length);
-
-
       var myid = req.body.userID;//로그인 페이지에서 입력한 정보
       var mypw = req.body.password;
-
 
     for(var i=0; i<result.length;i++){//db에 있는 정보들과 대조
       if(myid===result[i].id && mypw===result[i].password) {
@@ -104,22 +94,14 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
         req.session.userID = myid;// 세션에 올리기
         req.session.displayName = result[i].name;
         req.session.save(() => {
-
             res.redirect('/');
-
         });
-
       }
     }
       if(cnt == 0)// 로그인 실패시
         res.redirect('/');
-
     });
 });
-
-
-
-
 
 // Logout
 app.get('/logout', (req, res) => {
@@ -167,6 +149,7 @@ app.post('/pom',function(req,res){// 새 글쓰기
         });
     });
 });
+
 
 app.get('/profile',function(req,res){// 내 정보 보기
   var name = req.session.displayName;
@@ -217,10 +200,6 @@ app.post('/pom_receiver',function(req, res){
 
 });
 
-
-
-
 app.listen(3000,function(){// 3000번 포트 listen
-
   console.log('Connected, 3000 port!!');
 });
