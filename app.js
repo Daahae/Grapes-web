@@ -9,6 +9,10 @@ var engines = require('consolidate');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mysql = require('mysql');
+var formidable = require('formidable');
+var fs = require('fs');
+var sanitize = require("sanitize-filename");
+var date = require('date-utils');
 
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
@@ -44,8 +48,17 @@ conn.connect();
 
 app.get('/',function(req,res){// 홈
     var name = req.session.displayName;
-    if(name)//로그인했을시
-      res.render('main.html',{name:name});
+
+    if(name){//로그인했을시
+
+    var sql = 'select * from article';
+    conn.query(sql,function(err, results, fields){
+
+        console.log(results);
+        res.render('main.html',{name: name, results: results});
+      });
+    }
+
 
     else {//로그인 기록이 없을 시
 
@@ -56,7 +69,11 @@ app.get('/',function(req,res){// 홈
 
 
 app.get('/login',function(req,res){//로그인
+  var newDate = new Date();
+  var time = newDate.toFormat('YYYY-MM-DD');
+
   if(!req.session.userID){
+    console.log(time);
     res.render('login.html');
   } else {
     res.redirect('/');
@@ -113,12 +130,43 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.get('/pom',function(req,res){// 새 글쓰기
-  console.log(req.session.userID);
-  console.log(req.session.displayName);
-  console.log(req.session.img);
 
-  res.render('pom.html');
+app.get('/temp', (req, res) => {
+
+  res.redirect('/pom.html');
+});
+
+
+
+app.post('/pom',function(req,res){// 새 글쓰기
+//  console.log(req.session.userID);
+//  console.log(req.session.displayName);
+//  console.log(req.session.img);
+  var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        if (!process.env.PWD) {
+            process.env.PWD = process.cwd();
+        }
+        // `file` is the name of the <input> field of type `file`
+        var old_path = files.file.path,
+            new_path = path.join(process.env.PWD, '/images/', files.file.name);
+            console.log(new_path);
+            req.session.pomimg = files.file.name;
+
+        fs.readFile(old_path, function(err, data) {
+            fs.writeFile(new_path, data, function(err) {
+                fs.unlink(old_path, function(err) {
+                    if (err) {
+                        res.status(500);
+                        res.json({'success': false});
+                    } else {
+                        res.status(200);
+                        res.json({'success': true, asd: 'asd'});
+                    }
+                });
+            });
+        });
+    });
 });
 
 app.get('/profile',function(req,res){// 내 정보 보기
@@ -138,7 +186,35 @@ app.get('/profile',function(req,res){// 내 정보 보기
       };
       console.log(fid);
       res.render('profile.html',{name: name, id:id, img:img, fid:fid});
-});//친구인 id 모두 추출
+    });//친구인 id 모두 추출
+
+});
+
+app.post('/pom_receiver',function(req, res){
+  var newDate = new Date();
+  var time = newDate.toFormat('YYYY-MM-DD');
+  var name = req.session.displayName;
+  console.log(req.session.pomimg);
+  var sql = 'INSERT INTO article( owner, title, image, body, time)  VALUES   (?, ?, ?, ?, ?)';
+  conn.query(sql,[ req.session.userID,'title' ,req.session.pomimg, 'hello Grapes', time],function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
+          console.log('Success');
+
+          var sql = 'select * from article';
+          conn.query(sql,function(err, results, fields){
+
+            console.log(results);
+            res.render('main.html',{name: name, results: results});
+
+
+          });
+        }
+  });//삽입
+
+
 
 });
 
