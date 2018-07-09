@@ -104,6 +104,8 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
 
 
 
+
+
 // Logout
 app.get('/logout', (req, res) => {
   delete req.session.displayName;
@@ -123,9 +125,22 @@ app.get('/pom',function(req,res){// 새 글쓰기
 app.get('/profile',function(req,res){// 내 정보 보기
   var name = req.session.displayName;
   var id = req.session.userID;
-  var img = req.session.img;
+  var img = req.session.img;// 로그인한 유저의 정보들
+  var fid = new Array();
 
-  res.render('profile.html',{name: name, id:id, img:img});
+
+
+  var sql = 'select id2 from friend where id1 = ?';
+  conn.query(sql,[id],function(err, results, fields){
+
+      for(i=0;i< results.length;i++){
+        fid[i] = results[i].id2;
+
+      };
+      console.log(fid);
+      res.render('profile.html',{name: name, id:id, img:img, fid:fid});
+});//친구인 id 모두 추출
+
 });
 
 
