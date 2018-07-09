@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/dropdown.css">
     <link rel="stylesheet" href="/section.css">
-
+    <style>
+      @import url("mainFull.css") only screen and (min-width:850px);
+    </style>
     <!--JS-->
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,37 +24,39 @@
   <body>
     <header>
       <div class="head">
-        <a href="/"><img src="/grapebg.png"></a>
-      </div>
-      <div class="header-search-form">
-            <form>
-                <input type="search" class="input-search" placeholder="검색"/>
-                <input type="submit" class="input-search-submit" value="" />
-            </form>
-      </div>
-      <div class="header-menu">
-        <ul class="outer-menu">
-            <li>
-                <a href="#"><%= name%></a>
-            </li>
-        </ul>
-            <ul class="outer-menu">
-                <li>
-                    <a href="#"><img src="setting.png" /></a>
-                    <ul class="inner-menu">
-                        <li><a href="/profile"><%= name%>정보</a></li>
-                        <li><a href="/pom">새 글 쓰기</a></li>
-                        <li><a href="/logout">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="head-img">
+          <a href="/"><img src="/grapebg.png"></a>
+        </div>
+        <div class="header-search-form">
+              <form>
+                  <input type="search" class="input-search" placeholder="검색"/>
+                  <input type="submit" class="input-search-submit" value="" />
+              </form>
+        </div>
+        <div class="header-menu">
+          <ul class="outer-menu">
+              <li>
+                  <a href="/profile"><%= name%></a>
+              </li>
+          </ul>
+              <ul class="outer-menu">
+                  <li>
+                      <a href="#"><img src="setting.png" /></a>
+                      <ul class="inner-menu">
+                          <li><a href="/profile"><%= name%>정보</a></li>
+                          <li><a href="/pom">새 글 쓰기</a></li>
+                          <li><a href="/logout">로그아웃</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
         </div>
     </header>
     <!-- 본문 영역 -->
     <section id="main-section">
       <div class="paper">
         <div class="paper-holder">
-          <a><img width=100%  src="http://www5.wow64.net/image/asdqwe.PNG" /></a>
+          <a><img width=100%  src="welcome.jpg" /></a>
         </div>
         <p class="paper-description"><%= name%>님 Grapes에 오신걸 환영합니다.</p>
         <div class="paper-content">

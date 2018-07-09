@@ -13,6 +13,7 @@ div {
     width: 600px;
     height: 250px;
     background-color: white;
+    border-radius: 5px;
   }
   .profile-image {
     float: left;
@@ -22,63 +23,60 @@ div {
   .profile-image > img {
     width: 100%;
     height: 100%;
+    border-radius: 5px;
   }
   .profile-info {
     position: relative;
     float: right;
     width: 38%;
     height: 100%;
-    background-color: lightgrey;
+    background-color: #F5F5F5;
+    border-radius: 5px;
   }
-  .profile-info > p {
-    font-size: 30px;
-    padding-bottom: 20px;
+  .profile-info > ul > li > p {
+    font-size: 20px;
+    font-family: "Jeju Gothic", serif;
+    padding: 5px;
+    margin: 10% auto;
+    float: left;
   }
+
+  .profile-info > ul > li > p:nth-child(1) {
+    width: 30%;
+
+  }
+
+  .profile-info > ul > li > p:nth-child(2) {
+    width: 60%;
+  }
+
   #friend-section {
     margin: 0px auto;
     padding: 10px;
     width: 600px;
     height: 300px;
     background-color: white;
+    border-radius: 5px;
   }
   .profile-friend {
     clear: both;
     text-align: left;
     zoom: 1;
-    border-style: solid;
-    width: 100%;
+    width: 50%;
     height: 100%;
+    border-radius: 5px;
+    background-color: #F5F5F5;
   }
-  #control-section {
-    margin: 0px auto;
-    padding: 10px;
-    width: 600px;
-    height: 30px;
+  .profile-friend > p{
     background-color: white;
+    font-size: 1em;
+    padding-left: 10px;
+    padding-bottom: 5px;
   }
-  .control-friend {
-    clear: both;
-    float: right;
-    margin: 0 auto;
-    zoom: 1;
-    border-style: solid;
-    width: 20%;
-    height: 100%;
-  }
-  .input-add-submit {
-    clear: both;
-    display: block;
-    margin-top: 3px;
-    width: 47%; height: 24px;
-    border-radius: 3px;
-    border: 1px solid #CCCCCC;
-    margin-left: 1%;
-    vertical-align: top;
-    display: inline-block;
-    cursor: pointer;
-    background-color: lightgrey;
-  }
-  .input-add-submit:nth-child(2) {
-    float: right;
-    margin-right: 1%;
+  .friend-table {
+    overflow: scroll;
+    width: 96.8%;
+    height: 80%;
+    padding: 5px;
+    background-color: #F5F5F5;
   }

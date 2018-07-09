@@ -1,6 +1,6 @@
 .outer-menu{
   float: left;
-  width: 100px; height: 20px;
+  width: 85px; height: 20px;
   line-height: 20px;
   padding-top: 5px;
   position: relative;
@@ -29,7 +29,6 @@
   display: block;
   padding: 5px 10px;
   font-size: 10px;
-  font-style:oblique;
   z-index: 5000;
   background-color: white;
 }

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/dropdown.css">
     <link rel="stylesheet" href="/profileSection.css">
+    <link rel="stylesheet" href="/profileSearch.css">
+    <style>
+      @import url("mainFull.css") only screen and (min-width:850px);
+    </style>
 
     <!--JS-->
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -21,7 +25,8 @@
   <body>
     <header>
       <div class="head">
-        <a href="/"><img src="/grapebg.png"></a>
+        <div class="head-img">
+          <a href="/"><img src="/grapebg.png"></a>
       </div>
       <div class="header-search-form">
             <form>
@@ -32,7 +37,7 @@
       <div class="header-menu">
         <ul class="outer-menu">
             <li>
-                <a href="#"><%= name%></a>
+                <a href="/profile"><%= name%></a>
             </li>
         </ul>
             <ul class="outer-menu">
@@ -45,35 +50,42 @@
                 </li>
             </ul>
         </div>
+      </div>
     </header>
     <section id="dummy-section">
 
     </section>
     <section id="main-section">
       <div class="profile-image">
-        <img src="http://placehold.it/600x750">
+        <img src="profile.jpg">
       </div>
       <div class="profile-info">
-        <p class="profile_id">ID: <%= id%></p>
-        <p class="profile_name">Name: <%= name%></p>
+        <ul>
+          <li>
+            <p class="profile_id">ID:</p>
+            <p class="profile_id"><%= id%></p>
+          </li>
+          <li>
+            <p class="profile_name">Name:</p>
+            <p class="profile_name"><%= name%></p>
+          </li>
+        </ul>
       </div>
     </section>
     <section id="friend-section">
       <div class="profile-friend">
-        친구목록
-        <div>
-          <%= fid%>
+        <p>친구목록</p>
+        <div class="friend-table">
+        <%= fid%>
         </div>
-
-
-      </div>
-    </section>
-    <section id="control-section">
-      <div class="control-friend">
-        <form>
-            <input type="submit" class="input-add-submit" value="추가" />
-            <input type="submit" class="input-add-submit" value="삭제" />
-        </form>
+        <div class="friend-search-form">
+              <form>
+                  <input type="search" class="friend-search" placeholder="아이디 검색"/>
+                  <input type="submit" class="friend-search-submit" value="찾기" />
+                  <input type="submit" class="input-add-submit" value="추가" />
+                  <input type="submit" class="input-add-submit" value="삭제" />
+              </form>
+        </div>
       </div>
     </section>
   </body>
