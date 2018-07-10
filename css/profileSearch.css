@@ -32,7 +32,7 @@
     display: block;
     float: left;
 
-    width: 25%; height: 100%;
+    width: 22%; height: 100%;
     border-radius: 0 8px 8px 0;
     border: 1px solid #CCCCCC;
 
@@ -46,7 +46,7 @@
     display: block;
     float: left;
     margin-top: 3px;
-    width: 11.5%; height: 24px;
+    width: 11%; height: 24px;
     border-radius: 3px;
     margin-left: 1%;
     vertical-align: top;
