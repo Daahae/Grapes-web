@@ -242,10 +242,29 @@ app.post('/profile_insert',function(req,res){//친구추가
 });
 
 app.post('/profile_search',function(req,res){//검색
+  var id = req.body.search_ID; // 받아온 아이디
+  console.log(id);
+  var sql = 'select id from account where id = ?';// 해당아이디 여부 검색
+  conn.query(sql,[id],function(err, results, fields){
+      if(err){
+        console.log(err);
+        console.log('데이터가 없습니다.');
+        res.status(500).send('Internal Server Err');
 
 
 
-  res.send(req.body.search_ID);
+        }else{
+            if(results == null){
+              console.log(results);
+              res.redirect('/profile');
+            }
+
+        }
+          res.redirect('/profile');
+  });
+
+
+
 
 });
 app.post('/profile_delete',function(req,res){//검색
