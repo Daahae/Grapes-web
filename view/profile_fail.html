@@ -23,11 +23,7 @@
     <script src="jquery.imagesloaded.min.js"></script>
     <script src="dropdown.js"></script>
     <script type = "text/javascript">
-      if(<%=flag%> =="-1")
-        alert('해당하는 아이디가 없습니다.');
-      else if(<%=flag%> =="1")
-        alert('해당 아이디가 존재합니다.');
-
+      alert('해당하는 아이디가 없습니다.');
       function sub(url){
         var form1 = document.getElementById("form1");
         form1.action = url;
@@ -88,7 +84,7 @@
 
               <form class="form-signin" method="post" id="form1">
                   <input type="text" name= "search_ID" class="friend-search" placeholder="아이디 검색"/>
-                  <input type="button" onclick="sub('/profile_search')" class="friend-search-submit" value="찾기"/>
+                  <input type="button" onclick="sub('/profile_search')" class="friend-search-submit" value="찾기" />
                   <input type="button" onclick="sub('/profile_insert')" class="input-add-submit" value="추가" />
                   <input type="button" onclick="sub('/profile_delete')" class="input-add-submit" value="삭제" />
               </form>

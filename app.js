@@ -153,7 +153,7 @@ app.post('/pom',function(req,res){// 새 글쓰기
         }
         // `file` is the name of the <input> field of type `file`
         var old_path = files.file.path,
-            new_path = path.join(process.env.PWD, '/images/', files.file.name); 6
+            new_path = path.join(process.env.PWD, '/images/', files.file.name);
             console.log(new_path);
             req.session.pomimg = files.file.name;
 
@@ -179,7 +179,11 @@ app.get('/profile',function(req,res){// 내 정보 보기
   var id = req.session.userID;
   var img = req.session.img;// 로그인한 유저의 정보들
   var fid = new Array();
-
+  var flag=0;
+  if(req.session.profile != 0){// 검색결과에 따라 0이냐아니냐가 바뀜
+    flag = req.session.profile;
+    req.session.profile = 0;
+  }
 
 
   var sql = 'select id2 from friend where id1 = ?';
@@ -189,8 +193,8 @@ app.get('/profile',function(req,res){// 내 정보 보기
         fid[i] = results[i].id2;
 
       };
-      console.log(fid);
-      res.render('profile.html',{name: name, id:id, img:img, fid:fid});
+
+      res.render('profile.html',{name: name, id:id, img:img, fid:fid, flag:flag});
     });//친구인 id 모두 추출
 
 });
@@ -223,6 +227,7 @@ app.post('/profile_insert',function(req,res){//친구추가
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
+        req.session.profile = -1;// 검색 실패시 -1
         }else{
           console.log('insert1 success');
 
@@ -234,6 +239,7 @@ app.post('/profile_insert',function(req,res){//친구추가
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
+        req.session.profile = -1;// 검색 실패시 -1
         }else{
           console.log('insert2 success');
       }
@@ -242,32 +248,29 @@ app.post('/profile_insert',function(req,res){//친구추가
 });
 
 app.post('/profile_search',function(req,res){//검색
-  var id = req.body.search_ID; // 받아온 아이디
-  console.log(id);
+  var tid = req.body.search_ID; // 받아온 아이디
+  console.log(tid);
   var sql = 'select id from account where id = ?';// 해당아이디 여부 검색
-  conn.query(sql,[id],function(err, results, fields){
+  conn.query(sql,[tid],function(err, results, fields){
       if(err){
-        console.log(err);
-        console.log('데이터가 없습니다.');
         res.status(500).send('Internal Server Err');
-
-
-
-        }else{
-            if(results == null){
-              console.log(results);
+      }else if(results.length == 0){
+              console.log('해당하는 아이디가 없습니다.');
+              req.session.profile = -1;// 검색 실패시 -1
               res.redirect('/profile');
-            }
-
-        }
-          res.redirect('/profile');
+      }
+      else{
+        req.session.profile = 1;// 검색 성공시 1, 평소엔 0
+        res.redirect('/profile');
+      }
   });
 
 
 
 
 });
-app.post('/profile_delete',function(req,res){//검색
+app.post('/profile_delete',function(req,res){//삭제
+
   var id1 = req.session.userID;// 로그인 아이디
   var id2 = req.body.search_ID; // 받아온 아이디
   var sql = 'Delete from friend where id1 = ? and id2 = ?';
@@ -275,6 +278,7 @@ app.post('/profile_delete',function(req,res){//검색
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
+        req.session.profile = -1;// 검색 실패시 -1
         }else{
           console.log('delete1 success');
 
@@ -286,15 +290,15 @@ app.post('/profile_delete',function(req,res){//검색
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
+          req.session.profile = -1;// 검색 실패시 -1
         }else{
           console.log('delete2 success');
       }
   });
   res.redirect('/profile');
 
-
-
 });
+
 
 
 
