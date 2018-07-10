@@ -5,7 +5,25 @@ header {
   position:fixed;
   z-index: 9999;
 }
+header > .head {
+  position:relative;
+}
+header > .head > a{
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+}
 
+header > .head > a > img {
+  margin-top: 5px;
+}
+
+header > .head > a:hover {
+  cursor: pointer;
+}
+.header-menu{float: right; }
+/*
 .head {
   float: left;
   width: 100%;
@@ -23,7 +41,6 @@ header {
     margin-left: 5px;
     padding: 5px;
   }
-  .header-menu{float: right; }
   .input-search {
     display: block;
     float: left;
@@ -60,3 +77,5 @@ header {
     background-image : url('search.jpg');
     cursor: pointer;
   }
+
+  */
