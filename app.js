@@ -45,27 +45,31 @@ var conn = mysql.createConnection({//db계정 로그인
 
 conn.connect();
 //기본 설정들
+var sql = 'select * from article';
+
 
 app.get('/',function(req,res){// 홈
     var name = req.session.displayName;
-
     if(name){//로그인했을시
 
     var sql = 'select * from article';
     conn.query(sql,function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
 
-        console.log(results);
-        res.render('main.html',{name: name, results: results});
+          console.log(results);
+          res.render('main.html',{name: name, results: results});
+        }
       });
     }
 
-
     else {//로그인 기록이 없을 시
-
       res.redirect('/login');
     }
 
-})
+});
 
 
 app.get('/login',function(req,res){//로그인
@@ -202,15 +206,8 @@ app.post('/pom_receiver',function(req, res){
         res.status(500).send('Internal Server Err');
         }else{
           console.log('Success');
+          res.redirect('/');
 
-          var sql = 'select * from article';
-          conn.query(sql,function(err, results, fields){
-
-            console.log(results);
-            res.render('main.html',{name: name, results: results});
-
-
-          });
         }
   });//삽입
 
