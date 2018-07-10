@@ -17,7 +17,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
     <script src="jquery.imagesloaded.min.js"></script>
-    <script src="mason.js"></script>
+    <script>
+    $(document).ready(function() {
+      var $grid = $('#main-section').masonry({
+
+        itemSelector: '.paper'
+      });
+      var cnt = 1;
+      var appendDocument = function(cnt) {
+           var $paper = $('<div><div class="paper-holder"><a><img width=100%  src='+"<%= results[1].image%>"+' /></a></div><p class="paper-description">Lorem ipsum dolor sit amet</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem mi, egestas a facilisis eget, egestas ut magna.</p></div></div>').addClass('paper');
+           $grid.append($paper).masonry('appended', $paper);
+      };
+      appendDocument(cnt);
+      $(window).scroll(function() {
+        var scrollHeight = $(window).scrollTop() + $(window).height();
+        var documentHeight = $(document).height();
+        console.log($(window).scrollTop(), $(window).height(), documentHeight);
+        if (parseInt(scrollHeight) >= documentHeight-1) {
+        appendDocument(cnt);
+        }
+      });
+    });
+
+    </script>
     <script src="dropdown.js"></script>
     <script src="imgLoaded.js"></script>
   </head>
@@ -56,7 +78,7 @@
     <section id="main-section">
       <div class="paper">
         <div class="paper-holder">
-          <a><img width=100%  src="<%= results[0].image%>" /></a>
+          <a><img width=100%  src="<%= results[1].image%>" /></a>
         </div>
         <p class="paper-description"><%= name%>님 Grapes에 오신걸 환영합니다.</p>
         <div class="paper-content">
