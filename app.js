@@ -54,7 +54,7 @@ app.get('/',function(req,res){// 홈
     var sql = 'select * from article';
     conn.query(sql,function(err, results, fields){
 
-        console.log(results);
+        //console.log(results);
         res.render('main.html',{name: name, results: results});
       });
     }
