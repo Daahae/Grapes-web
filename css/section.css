@@ -21,9 +21,13 @@
 .paper:nth-child(1){
   margin-top: 50px;
 }
-
-.paper-holder > a {
- height: inherit;
+.paper-holder{
+  width: 100%;
+  height: 80%;
+}
+.paper-holder > a > img{
+ width: 100%;
+ height: 100%;
 }
 
 .paper-content{
