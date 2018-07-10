@@ -45,27 +45,31 @@ var conn = mysql.createConnection({//db계정 로그인
 
 conn.connect();
 //기본 설정들
+var sql = 'select * from article';
+
 
 app.get('/',function(req,res){// 홈
     var name = req.session.displayName;
-
     if(name){//로그인했을시
 
     var sql = 'select * from article';
     conn.query(sql,function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
 
-        //console.log(results);
-        res.render('main.html',{name: name, results: results});
+          console.log(results);
+          res.render('main.html',{name: name, results: results});
+        }
       });
     }
 
-
     else {//로그인 기록이 없을 시
-
       res.redirect('/login');
     }
 
-})
+});
 
 
 app.get('/login',function(req,res){//로그인
@@ -94,8 +98,8 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
     console.log(result.length);
 
 
-      var myid = req.body.userID;//로그인 페이지에서 입력한 정보
-      var mypw = req.body.password;
+    var myid = req.body.userID;//로그인 페이지에서 입력한 정보
+    var mypw = req.body.password;
 
 
     for(var i=0; i<result.length;i++){//db에 있는 정보들과 대조
@@ -149,9 +153,10 @@ app.post('/pom',function(req,res){// 새 글쓰기
         }
         // `file` is the name of the <input> field of type `file`
         var old_path = files.file.path,
-            new_path = path.join(process.env.PWD, '/images/', files.file.name);
+            new_path = path.join(process.env.PWD, '/images/', files.file.name); 6
             console.log(new_path);
             req.session.pomimg = files.file.name;
+
 
         fs.readFile(old_path, function(err, data) {
             fs.writeFile(new_path, data, function(err) {
@@ -202,21 +207,76 @@ app.post('/pom_receiver',function(req, res){
         res.status(500).send('Internal Server Err');
         }else{
           console.log('Success');
+          res.redirect('/');
 
-          var sql = 'select * from article';
-          conn.query(sql,function(err, results, fields){
-
-            console.log(results);
-            res.render('main.html',{name: name, results: results});
-
-
-          });
         }
   });//삽입
 
 
 
 });
+
+app.post('/profile_insert',function(req,res){//친구추가
+  var id = req.body.search_ID;
+  var sql = 'INSERT INTO friend(id1,  id2)  VALUES   (?, ?)';
+  conn.query(sql,[req.session.userID, id],function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
+          console.log('insert1 success');
+
+        }
+  });
+
+  var sql = 'INSERT INTO friend(id2,  id1)  VALUES   (?, ?)';
+  conn.query(sql,[req.session.userID, id],function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
+          console.log('insert2 success');
+      }
+  });
+  res.redirect('/profile');
+});
+
+app.post('/profile_search',function(req,res){//검색
+
+
+
+  res.send(req.body.search_ID);
+
+});
+app.post('/profile_delete',function(req,res){//검색
+  var id1 = req.session.userID;// 로그인 아이디
+  var id2 = req.body.search_ID; // 받아온 아이디
+  var sql = 'Delete from friend where id1 = ? and id2 = ?';
+  conn.query(sql,[id1, id2],function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
+          console.log('delete1 success');
+
+        }
+  });
+
+  var sql = 'Delete from friend where id1 = ? and id2 = ?';
+  conn.query(sql,[id2, id1],function(err, results, fields){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Err');
+        }else{
+          console.log('delete2 success');
+      }
+  });
+  res.redirect('/profile');
+
+
+
+});
+
 
 
 

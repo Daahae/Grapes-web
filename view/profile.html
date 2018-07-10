@@ -21,6 +21,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
     <script src="jquery.imagesloaded.min.js"></script>
     <script src="dropdown.js"></script>
+    <script type = "text/javascript">
+      function sub(url){
+        var form1 = document.getElementById("form1");
+        form1.action = url;
+        form1.submit();
+      }
+
+    </script>
   </head>
   <body>
     <header>
@@ -36,7 +44,8 @@
                 <li>
                     <a href="#"><img src="setting.png" /></a>
                     <ul class="inner-menu">
-                        <li><a href="/profile.html"><%= name%>정보</a></li>
+                        <li><a href="/profile"><%= name%>정보</a></li>
+                        <li><a href="/temp">새 글 쓰기</a></li>
                         <li><a href="/logout">로그아웃</a></li>
                     </ul>
                 </li>
@@ -71,12 +80,16 @@
         <%= fid%>
         </div>
         <div class="friend-search-form">
-              <form>
-                  <input type="search" class="friend-search" placeholder="아이디 검색"/>
-                  <input type="submit" class="friend-search-submit" value="찾기" />
-                  <input type="submit" class="input-add-submit" value="추가" />
-                  <input type="submit" class="input-add-submit" value="삭제" />
+
+              <form class="form-signin" method="post" id="form1">
+                  <input type="text" name= "search_ID" class="friend-search" placeholder="아이디 검색"/>
+                  <input type="button" onclick="sub('/profile_search')" class="friend-search-submit" value="찾기" />
+                  <input type="button" onclick="sub('/profile_insert')" class="input-add-submit" value="추가" />
+                  <input type="button" onclick="sub('/profile_delete')" class="input-add-submit" value="삭제" />
               </form>
+
+
+
         </div>
       </div>
     </section>
