@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -24,15 +23,12 @@
     <script src="jquery.imagesloaded.min.js"></script>
     <script src="dropdown.js"></script>
     <script type = "text/javascript">
-
-
         if(<%=flag%> =="-1"){
            alert("해당 아이디가 존재하지 않습니다.");
         }
         else if(<%=flag%> =="1"){
           alert("해당 아이디가 존재합니다.");
         }
-
       function sub(url){
         var form1 = document.getElementById("form1");
         form1.action = url;
@@ -90,7 +86,6 @@
         <%= fid%>
         </div>
         <div class="friend-search-form">
-
               <form class="form-signin" method="post" id="form1">
                   <input type="text" name= "search_ID" class="friend-search" placeholder="아이디 검색"/>
                   <input type="button" onclick="sub('/profile_search')" class="friend-search-submit" value="찾기"/>

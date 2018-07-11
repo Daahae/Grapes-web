@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Grapes</title>
+	<link rel="icon" href="/Grape.png">
 	<link href="dropzone.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" href="init.css">
+	<link rel="stylesheet" href="header.css">
+	<link rel="stylesheet" href="dropdown.css">
+	<link rel="stylesheet" href="pomSection.css">
 	<script src="dropzone.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
@@ -43,21 +49,54 @@
 		$("form[name=article]").submit();
 	}
 	</script>
+	<script src="dropdown.js"></script>
 </head>
 <body>
-	<form name='article' action='/pom_receiver' method='POST'>
-		제목 : <input type='text' name='title' size='40'>
-		<br><br>
-		본문<br>
-		<div name='contentdiv' contentEditable='true' style='width:600px; height:600px; border:4px solid black'>
-		</div>
-		<input type="hidden" name="content" value="">
-		<input type="hidden" name="url" value="">
-	</form>
-	<br>
-	<form action="/pom" class="dropzone">
-		<input type="hidden" name="tmpkey" value="">
-	</form>
-	<input type='button' value='제출' onclick='submitArticle();'>
+	<header>
+		<div class="head">
+			<a href="/"><img src="/grapebg.png">  Grapes</a>
+			<div class="header-menu">
+				<ul class="outer-menu">
+						<li>
+								<a href="/profile"><%= name%></a>
+						</li>
+				</ul>
+						<ul class="outer-menu">
+								<li>
+										<a href="#"><img src="setting.png" /></a>
+										<ul class="inner-menu">
+												<li><a href="/logout">로그아웃</a></li>
+										</ul>
+								</li>
+						</ul>
+				</div>
+			</div>
+	</header>
+	<section id="dummy-section">
+
+	</section>
+	<section id="pom-section">
+		<form name='article' action='/pom_receiver' method='POST'>
+			<div class="pom-title">
+				<p>제목:</p>
+				<input type='text' name='title' size='40'>
+			</div>
+			<div class="pom-body">
+				<p>내용</p>
+				<div name='contentdiv' contentEditable='true'>
+				</div>
+			</div>
+				<input type="hidden" name="content" value="">
+				<input type="hidden" name="url" value="">
+		</form>
+		<form action="/pom" class="dropzone">
+			<input type="hidden" name="tmpkey" value="">
+		</form>
+		<input type='button' value='취소'>
+		<input type='button' value='글쓰기' onclick='submitArticle();'>
+	</section>
+	<footer>
+		Grapes ⓣ 2018<br />
+		<a href="https://github.com/jong4876/Grapes_Web" target="_blank">https://github.com/jong4876/Grapes_Web</a></footer>
 </body>
 </html>
