@@ -23,6 +23,25 @@ header > .head > a:hover {
   cursor: pointer;
 }
 .header-menu{float: right; }
+
+.goTOP {
+  clear: both;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+}
+
+.goTOP > a > p {
+  opacity: 0.5;
+  background-color: #CCCCCC;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.goTOP > a > p:hover {
+  opacity: 1;
+}
+
 /*
 .head {
   float: left;

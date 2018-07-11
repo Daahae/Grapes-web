@@ -20,9 +20,11 @@
 
     <!--mediaQuery-->
     <style>
-      @import url("loginHalf.css") only screen and (max-width:768px);
-      @import url("loginFull.css") only screen and (min-width:768px);
+      @import url("loginHalf.css") only screen and (max-width:1215px);
+      @import url("loginFull.css") only screen and (min-width:1215px);
     </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src = "loginGallery.js"></script>
   </head>
   <body>
     <header>
@@ -30,21 +32,39 @@
         <a href="/"><img src="/grapebg.png"> Grapes</a>
       </div>
     </header>
-    <section class="photo">
-      <img src="/login.jpg" alt="">
-    </section>
-    <section class="info">
-      <form class="form-signin" action="/login_receiver" method="post">
-        <div class="subtitle">
-          Sign In</div>
-        <input class="form-control" id="inputEmail" type="text" name="userID" placeholder="userID" required="" autofocus="">
-        <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" required="">
+    <section id="box">
+      <section class="photo">
+        <div class="photo-box "data-role="slider" data-width = "500" data-height="300">
+          <div class="container">
+            <div class="item">
+              <img src="login2.jpg" alt="" />
+            </div>
+            <div class="item">
+              <img src="login3.jpg" alt="" />
+            </div>
+            <div class="item">
+              <img src="login.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="photo-input">
+          <input type="button" id="left-button" value="←">
+          <input type="button" id="right-button" value="→">
+        </div>
+      </section>
+      <section class="info">
+        <form class="form-signin" action="/login_receiver" method="post">
+          <div class="subtitle">
+            Sign In</div>
+          <input class="form-control" id="inputEmail" type="text" name="userID" placeholder="userID" required="" autofocus="">
+          <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" required="">
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Sign In</button>
-      </form>
-      <form class="form-signin" action="/register" method="get">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Register</button>
-      </form>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Sign In</button>
+        </form>
+        <form class="form-signin" action="/register" method="get">
+          <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Register</button>
+        </form>
+      </section>
     </section>
     <footer>
       Grapes ⓣ 2018<br />

@@ -1,9 +1,18 @@
+#box {
+  margin: 10px auto;
+  width: 600px;
+  height: 300px;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .photo {
   display: none;
 }
-section {
-  position:relative;
-  margin-top: 5%;
-  left: 25%;
-  width: 50%;
+
+.info {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 60px;
 }
