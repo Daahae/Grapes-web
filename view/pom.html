@@ -39,7 +39,7 @@
 	<script>
 	function submitArticle() {
 		$('div[name=contentdiv] > img').remove();
-		$('input[name=content]').val($('div[name=contentdiv]').html());
+		$('input[name=content]').val($('div[name=contentdiv]').text());
 		$("form[name=article]").submit();
 	}
 	</script>
