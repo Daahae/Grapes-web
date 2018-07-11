@@ -50,17 +50,27 @@ var sql = 'select * from article';
 
 app.get('/',function(req,res){// 홈
     var name = req.session.displayName;
+    var id = req.session.userID;
     if(name){//로그인했을시
 
-    var sql = 'select * from article';
-    conn.query(sql,function(err, results, fields){
+    var sql = 'select * from article where owner = ? ';
+    conn.query(sql,[id],function(err, article_me, fields){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
         }else{
-
-          console.log(results);
-          res.render('main.html',{name: name, results: results});
+        
+          var id = req.session.userID;
+          var sql = 'select * from article where owner in (select id2 from friend where id1 = ?)';
+                 conn.query(sql, [id],function(err, article_f, fields){
+                   if(err){
+                     console.log(err);
+                     res.status(500).send(id);
+                   }else{
+                     console.log(article_f);
+                     res.render('main.html',{name: name, article_me: article_me, article_f: article_f});
+                }
+              });
         }
       });
     }
