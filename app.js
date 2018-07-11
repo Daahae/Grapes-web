@@ -25,6 +25,7 @@ app.set('view engine', 'html');//default엔진을 html로
 app.use(static(path.join(__dirname,'/view')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('images'));//정적인 이미지 저장공간 접근 허용 images폴더
+app.use(express.static('tempurl'));
 app.use(express.static('css'));
 app.use(express.static('js'));
 app.use(cookieParser());
@@ -59,7 +60,7 @@ app.get('/',function(req,res){// 홈
         console.log(err);
         res.status(500).send('Internal Server Err');
         }else{
-        
+
           var id = req.session.userID;
           var sql = 'select * from article where owner in (select id2 from friend where id1 = ?)';
                  conn.query(sql, [id],function(err, article_f, fields){
@@ -149,6 +150,18 @@ app.get('/temp', (req, res) => {
 
   res.redirect('/pom.html');
 });
+// Delete temporary xml used for image update.
+app.get('/tempdelete', function(req, res) {
+  if (!process.env.PWD) {
+      process.env.PWD = process.cwd();
+  }
+  tmp_path = path.join(process.env.PWD, '/tempurl/', req.query.tmpkey + '.xml');
+  fs.unlink(tmp_path, function(err) {
+    console.log('XML removed : ' + req.query.tmpkey);
+  });
+});
+
+
 
 
 
@@ -176,7 +189,17 @@ app.post('/pom',function(req,res){// 새 글쓰기
                         res.json({'success': false});
                     } else {
                         res.status(200);
-                        res.json({'success': true, asd: 'asd'});
+                        res.json({'success': true});
+
+                        var tmp_path = path.join(process.env.PWD, '/tempurl/', fields.tmpkey + '.xml');
+                        console.log(tmp_path);
+                        xml = '<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">';
+                        xml += ('<filename>' + files.file.name + '</filename>');
+                        xml += ('<url>/' + files.file.name + '</url>');
+                        xml += '</rss>';
+                        fs.writeFile(tmp_path, xml, function(err) {
+                        console.log('XML created : ' + fields.tmpkey);
+                      });
                     }
                 });
             });
@@ -198,33 +221,36 @@ app.get('/profile',function(req,res){// 내 정보 보기
 
   var sql = 'select id2 from friend where id1 = ?';
   conn.query(sql,[id],function(err, results, fields){
-
       for(i=0;i< results.length;i++){
         fid[i] = results[i].id2;
-
       };
-
       res.render('profile.html',{name: name, id:id, img:img, fid:fid, flag:flag});
     });//친구인 id 모두 추출
 
 });
 
 app.post('/pom_receiver',function(req, res){
-  var newDate = new Date();
-  var time = newDate.toFormat('YYYY-MM-DD');
-  var name = req.session.displayName;
-  console.log(req.session.pomimg);
-  var sql = 'INSERT INTO article( owner, title, image, body, time)  VALUES   (?, ?, ?, ?, ?)';
-  conn.query(sql,[ req.session.userID,'title' ,req.session.pomimg, 'hello Grapes', time],function(err, results, fields){
-      if(err){
-        console.log(err);
-        res.status(500).send('Internal Server Err');
-        }else{
-          console.log('Success');
-          res.redirect('/');
+  var  title = req.body.title;
+  var  body =req.body.content;
+  var  image = req.body.url;
 
-        }
-  });//삽입
+    console.log(title+"out "+ body);
+
+    var newDate = new Date();
+    var time = newDate.toFormat('YYYY-MM-DD');
+    var name = req.session.displayName;
+
+    var sql = 'INSERT INTO article( owner, title, image, body, time)  VALUES   (?, ?, ?, ?, ?)';
+    conn.query(sql,[ req.session.userID,title ,image, body, time],function(err, results, fields){
+        if(err){
+          console.log(err);
+          res.status(500).send('Internal Server Err');
+          }else{
+            console.log('Success');
+            res.redirect('/');
+
+          }
+    });//삽입
 
 
 
@@ -288,7 +314,7 @@ app.post('/profile_delete',function(req,res){//삭제
       if(err){
         console.log(err);
         res.status(500).send('Internal Server Err');
-        req.session.profile = -1;// 검색 실패시 -1
+          req.session.profile = -1;// 검색 실패시 -1
         }else{
           console.log('delete1 success');
 

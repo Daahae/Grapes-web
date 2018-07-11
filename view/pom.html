@@ -4,16 +4,60 @@
 	<link href="dropzone.css" type="text/css" rel="stylesheet">
 	<script src="dropzone.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		var key = Math.floor((Math.random() * 100000) + 1);
+		$('input[name=tmpkey]').val(key);
+
+		var loaded = false;
+		var interval = setInterval(function() {
+			if (loaded) { clearInterval(interval); }
+
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var result = this.responseText;
+					$("div[name=contentdiv]").prepend("<br><img src='" + $(result).find("url").text() + "' alt='Not an image' width='200px' height='200px'><br><br>");
+					$('input[name=url]').val($(result).find("url").text());
+					loaded = true;
+
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							console.log("deleted");
+						}
+					};
+					xmlhttp.open("GET", "/tempdelete/?tmpkey=" + key, true);
+					xmlhttp.send();
+				}
+			};
+			xmlhttp.open("GET", "/" + key + ".xml", true);
+			xmlhttp.send();
+		}, 1000);
+	});
+	</script>
+	<script>
+	function submitArticle() {
+		$('div[name=contentdiv] > img').remove();
+		$('input[name=content]').val($('div[name=contentdiv]').html());
+		$("form[name=article]").submit();
+	}
+	</script>
 </head>
 <body>
-	<p>이곳에 이미지를 드래그하세요</p>
-	<form action="http://localhost:3000/pom" class="dropzone">
-
+	<form name='article' action='/pom_receiver' method='POST'>
+		제목 : <input type='text' name='title' size='40'>
+		<br><br>
+		본문<br>
+		<div name='contentdiv' contentEditable='true' style='width:600px; height:600px; border:4px solid black'>
+		</div>
+		<input type="hidden" name="content" value="">
+		<input type="hidden" name="url" value="">
 	</form>
-	 <form action="/pom_receiver" method="post">
-		<br>
-		<button type="submit">작성완료</button>
-
+	<br>
+	<form action="/pom" class="dropzone">
+		<input type="hidden" name="tmpkey" value="">
 	</form>
+	<input type='button' value='제출' onclick='submitArticle();'>
 </body>
 </html>
