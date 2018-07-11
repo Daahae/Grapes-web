@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/profileSearch.css">
     <style>
       @import url("mainFull.css") only screen and (min-width:850px);
+
     </style>
 
     <!--JS-->
@@ -23,10 +24,14 @@
     <script src="jquery.imagesloaded.min.js"></script>
     <script src="dropdown.js"></script>
     <script type = "text/javascript">
-      if(<%=flag%> =="-1")
-        alert('해당하는 아이디가 없습니다.');
-      else if(<%=flag%> =="1")
-        alert('해당 아이디가 존재합니다.');
+
+
+        if(<%=flag%> =="-1"){
+           alert("해당 아이디가 존재하지 않습니다.");
+        }
+        else if(<%=flag%> =="1"){
+          alert("해당 아이디가 존재합니다.");
+        }
 
       function sub(url){
         var form1 = document.getElementById("form1");
