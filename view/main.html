@@ -18,29 +18,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
     <script src="jquery.imagesloaded.min.js"></script>
     <script>
-    var tmp = <%- JSON.stringify(article_f) %>
+    var tmp = <%- JSON.stringify(article_me) %>
+    var dataf = <%- JSON.stringify(article_f) %>
     $(document).ready(function() {
       var $grid = $('#main-section').masonry({
 
         itemSelector: '.paper'
       });
-      var cnt=tmp.length-1;
+      var allCnt=tmp.length-1 + dataf.length;
+      var meCnt = tmp.length-1;
+      var fCnt = dataf.length-1;
       var appendDocument = function() {
-           var $paper = $('<div><div class="paper-holder"><a><img src="'+tmp[cnt].image+'" /></a></div><p class="paper-description">'+tmp[cnt].title+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">'+tmp[cnt].body+'</p></div></div>').addClass('paper');
+           var $paper = $('<div><div class="paper-holder"><a><img src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">'+tmp[meCnt].body+'</p></div></div>').addClass('paper');
+           $grid.append($paper).masonry('appended', $paper);
+      };
+
+      var appendDocument2 = function() {
+           var $paper = $('<div><div class="paper-holder"><a><img src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">'+dataf[fCnt].body+'</p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
       };
 
       appendDocument();
+      allCnt-=1;
+      meCnt-=1;
       $(window).scroll(function() {
         var scrollHeight = $(window).scrollTop() + $(window).height();
         var documentHeight = $(document).height();
         console.log($(window).scrollTop(), $(window).height(), documentHeight);
         if (parseInt(scrollHeight) >= documentHeight-1) {
-          if(cnt>0)
+          if(fCnt>=0){
+            var a = dataf[fCnt].article_id;
+          }else{
+            var a = -1;
+          }
+          if(meCnt>=0){
+            var b = tmp[meCnt].article_id;
+          }else {
+            var b = -1;
+          }
+          console.log('a='+fCnt);
+          console.log('b='+meCnt);
+          console.log('all='+allCnt);
+          if(allCnt>=0)
           {
-            cnt-=1;
-            console.log("##");
-            appendDocument();
+            allCnt-=1;
+            if(a>=0 && b>=0)
+            {
+              if(a > b){
+                appendDocument2();
+                fCnt-=1;
+              } else if(a < b){
+                appendDocument();
+                meCnt-=1;
+              }
+            }else if(a>=0 && b<0) {
+              appendDocument2();
+              meCnt-=1;
+            }else if(a<0 && b>=0){
+              appendDocument();
+              fCnt-=1;
+            }
           }
         }
       });
