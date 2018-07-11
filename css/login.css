@@ -16,10 +16,52 @@ header > .head > a{
 header > .head > a:hover {
   cursor: pointer;
 }
-
 .subtitle {
   font-size: 2em;
   margin-bottom: 15px;
+}
+
+.container {
+    border-radius: 10px;
+}
+.container > .item {
+    border-radius: 10px;
+}
+.container > .item > img{
+    border-radius: 10px;
+}
+
+
+.photo > .photo-input > input {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    margin: 5px auto;
+    width: 70px;
+    font-size: 2em;
+    text-decoration: none;
+    border-radius: 4px;
+    border-style: none;
+    padding: 5px 10px;
+    color: rgba(30, 22, 54, 0.6);
+    background-color: inherit;
+    border-color: inherit;
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+.photo > .photo-input > input:nth-child(1){
+  float: left;
+}
+.photo > .photo-input > input:nth-child(2){
+  float: right;
+}
+
+.photo > .photo-input > input:hover {
+  color: rgba(255, 255, 255, 0.85);
+    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
 
 input, button {
@@ -31,7 +73,7 @@ footer {
   border-top: 1px;
   border-top-color: #DCDCDC;
   border-top-style: solid;
-  margin-top: 100px;
+  margin-top: 50px;
   padding-top: 10px;
   text-align: center;
     clear: both;

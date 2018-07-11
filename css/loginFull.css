@@ -1,19 +1,37 @@
-body{
-  overflow: hidden;
+#box {
+  margin: 10px auto;
+  width: 1200px;
+  height: 420px;
+  background-color: white;
+  border-radius: 5px;
 }
-section{
+
+.photo {
+  display:block;
   float: left;
-  margin: 80px 5%;
-  width: 40%;
+  width: 500px;
+  height: 300px;
+  padding-top: 60px;
 }
+
+.photo-box > .container {
+  width: inherit;
+  height: inherit;
+}
+
+.photo-box > .container > .item {
+  width: inherit;
+  height: inherit;
+}
+
+.photo-box > .container > .item > img{
+  width: inherit;
+  height: inherit;
+}
+
 .info {
-  margin-top: 8%;
+  float: right;
+  width: 40%;
+  height: 100%;
+  padding-top: 60px;
 }
-  .photo {
-    display: block;
-  }
-    .photo img{
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-    }
