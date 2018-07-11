@@ -1,0 +1,26 @@
+#darken-background {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+
+  display: none;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 11000;
+  overflow-y: scroll;
+}
+
+#lightbox {
+  width: 700px;
+  margin: 20px auto; padding: 15px;
+
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 5px 5px rgba(34, 25, 25, 0.4);
+  text-align: center;
+}
+
+.user-information { overflow: hidden; text-align: left; }
+.user-information-image { float: left; width: 70px; }
+.user-information-text { float: right; width: 620px; }
+.lightbox-splitter { margin: 10px 0; }

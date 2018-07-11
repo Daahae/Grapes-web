@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/dropdown.css">
     <link rel="stylesheet" href="/section.css">
+    <link rel="stylesheet" href="/lightbox.css">
     <style>
       @import url("mainFull.css") only screen and (min-width:850px);
     </style>
@@ -29,13 +30,27 @@
       var meCnt = tmp.length-1;
       var fCnt = dataf.length-1;
       var appendDocument = function() {
-           var $paper = $('<div><div class="paper-holder"><a><img src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">'+tmp[meCnt].body+'</p></div></div>').addClass('paper');
+           var $paper = $('<div><div class="paper-holder"><a><img src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">' + tmp[meCnt].title  + '</p><p class="paper-text">' + tmp[meCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
+           $paper.click(function(){ showLightBox(); });
+           function showLightBox() {
+             $('#darken-background').show();
+             $('#darken-background').css('top', $(window).scrollTop());
+
+             $('body').css('overflow', 'hidden');
+           }
       };
 
       var appendDocument2 = function() {
-           var $paper = $('<div><div class="paper-holder"><a><img src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">'+dataf[fCnt].body+'</p></div></div>').addClass('paper');
+           var $paper = $('<div><div class="paper-holder"><a><img src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a><p class="paper-text">' + dataf[fCnt].title  + '</p><p class="paper-text">' + dataf[fCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
+           $paper.click(function(){ showLightBox(); });
+           function showLightBox() {
+             $('#darken-background').show();
+             $('#darken-background').css('top', $(window).scrollTop());
+
+             $('body').css('overflow', 'hidden');
+           }
       };
 
       appendDocument();
@@ -85,6 +100,7 @@
     </script>
     <script src="dropdown.js"></script>
     <script src="imgLoaded.js"></script>
+    <script src="lightbox.js"></script>
   </head>
   <body>
     <header>
@@ -122,6 +138,21 @@
         </div>
       </div>
     </section>
+    <div id='darken-background'>
+      <div id='lightbox'>
+        <div class="user-information">
+        <a class="user-information-image" href="#">
+          <img width=100%  src="https://i.ytimg.com/vi/CNPeG316UMg/hqdefault.jpg" />
+        </a>
+        <div class="user-information-text">
+          <h3>김김김</h3>
+          <p>sssssssssss</p>
+        </div>
+        </div>
+        <hr class='lightbox-spliter'>
+        <img src='http://placehold.it/600x750'>
+      </div>
+    </div>
     <div class="goTOP">
       <a class="ho" href="#">
         <p>TOP</p>
