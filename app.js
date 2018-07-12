@@ -213,6 +213,7 @@ app.get('/profile',function(req,res){// 내 정보 보기
   var img = req.session.img;// 로그인한 유저의 정보들
   var fid = new Array();
   var flag=0;
+
   if(req.session.profile != 0){// 검색결과에 따라 0이냐아니냐가 바뀜
     flag = req.session.profile;
     req.session.profile = 0;
