@@ -53,9 +53,36 @@
            }
       };
 
-      appendDocument();
-      allCnt-=1;
-      meCnt-=1;
+      if(fCnt>=0){
+        var a = dataf[fCnt].article_id;
+      }else{
+        var a = -1;
+      }
+      if(meCnt>=0){
+        var b = tmp[meCnt].article_id;
+      }else {
+        var b = -1;
+      }
+      if(allCnt>=0)
+      {
+        allCnt-=1;
+        if(a>=0 && b>=0)
+        {
+          if(a > b){
+            appendDocument2();
+            fCnt-=1;
+          } else if(a < b){
+            appendDocument();
+            meCnt-=1;
+          }
+        }else if(a>=0 && b<0) {
+          appendDocument2();
+          fCnt-=1;
+        }else if(a<0 && b>=0){
+          appendDocument();
+          meCnt-=1;
+        }
+      }
       $(window).scroll(function() {
         var scrollHeight = $(window).scrollTop() + $(window).height();
         var documentHeight = $(document).height();
@@ -71,9 +98,6 @@
           }else {
             var b = -1;
           }
-          console.log('a='+fCnt);
-          console.log('b='+meCnt);
-          console.log('all='+allCnt);
           if(allCnt>=0)
           {
             allCnt-=1;
@@ -88,10 +112,10 @@
               }
             }else if(a>=0 && b<0) {
               appendDocument2();
-              meCnt-=1;
+              fCnt-=1;
             }else if(a<0 && b>=0){
               appendDocument();
-              fCnt-=1;
+              meCnt-=1;
             }
           }
         }
@@ -105,7 +129,8 @@
   <body>
     <header>
       <div class="head">
-        <a href="/"><img src="/grapebg.png">  Grapes</a>
+        <a href="/">
+          <img src="/grapebg.png">  Grapes</a>
         <div class="header-menu">
           <ul class="outer-menu">
               <li>
@@ -134,7 +159,7 @@
         <p class="paper-description"><%= name%>님 Grapes에 오신걸 환영합니다.</p>
         <div class="paper-content">
           <a class="paper-link" href="#"><img src="http://placehold.it/30x30" /></a>
-          <p class="paper-text">당신만의 세계를 보여주세요 </p>
+          <p class="paper-text">당신만의 세계를 보여주세요</p>
         </div>
       </div>
     </section>
@@ -142,15 +167,15 @@
       <div id='lightbox'>
         <div class="user-information">
         <a class="user-information-image" href="#">
-          <img width=100%  src="https://i.ytimg.com/vi/CNPeG316UMg/hqdefault.jpg" />
+          <img width=100%  src="http://placehold.it/30x30" />
         </a>
         <div class="user-information-text">
-          <h3>김김김</h3>
-          <p>sssssssssss</p>
+          <h3><%= name%>님 Grapes에 오신걸 환영합니다.</h3>
+          <p>당신만의 세계를 보여주세요</p>
         </div>
         </div>
         <hr class='lightbox-spliter'>
-        <img src='http://placehold.it/600x750'>
+        <img src='welcome.jpg'>
       </div>
     </div>
     <div class="goTOP">

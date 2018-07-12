@@ -2,7 +2,7 @@
   float: left;
   width: 85px; height: 20px;
   line-height: 20px;
-  padding-top: 5px;
+  padding-top: 7px;
   position: relative;
   text-align: center;
 }
@@ -10,7 +10,8 @@
 .outer-menu:hover {cursor: pointer;}
 
 .outer-menu:nth-child(1) > li {
-  padding-top: 5px;
+  padding-top: 8px;
+  font-size: 18px;
 }
 
 .outer-menu > li > a {
