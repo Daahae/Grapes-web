@@ -26,9 +26,13 @@
   width: 100%;
   height: 80%;
 }
+.paper-holder > p:nth-child(1){
+  float: right;
+}
+
 .paper-holder > a > img{
  width: 100%;
- height: 100%;
+ height: 95%;
 }
 
 .paper-content{

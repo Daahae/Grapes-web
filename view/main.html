@@ -30,13 +30,15 @@
       var meCnt = tmp.length-1;
       var fCnt = dataf.length-1;
       var appendDocument = function() {
-           var $paper = $('<div><div class="paper-holder"><a><img class="articleimage" width=100% src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + tmp[meCnt].title  + '</p><p class="paper-text">' + tmp[meCnt].body + '  </p></div></div>').addClass('paper');
+           var $paper = $('<div><div class="paper-holder"><p class="paper-date">'+tmp[meCnt].time.split('T')[0]+'</p><a><img class="articleimage" width=100% src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + tmp[meCnt].title  + '</p><p class="paper-text">' + tmp[meCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
            $paper.bind('click', function(e) {
              var image = e.currentTarget.getElementsByClassName('articleimage')[0].src;
+             var date = e.currentTarget.getElementsByClassName('paper-date')[0].textContent;
              var id = e.currentTarget.getElementsByClassName('paper-description')[0].textContent;
              var title = e.currentTarget.getElementsByClassName('paper-text')[0].textContent;
              var content = e.currentTarget.getElementsByClassName('paper-text')[1].textContent;
+             $('#lightbox > h4').text(date);
              $('#lightbox > img').attr('src', image);
              $('.user-information > p').text(id);
              $('.user-information-text > h3').text(title);
@@ -52,13 +54,15 @@
       };
 
       var appendDocument2 = function() {
-           var $paper = $('<div><div class="paper-holder"><a><img class="articleimage" width=100% src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + dataf[fCnt].title  + '</p><p class="paper-text">' + dataf[fCnt].body + '  </p></div></div>').addClass('paper');
+           var $paper = $('<div><div class="paper-holder"><p class="paper-date">'+dataf[fCnt].time.split('T')[0]+'</p><a><img class="articleimage" width=100% src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + dataf[fCnt].title  + '</p><p class="paper-text">' + dataf[fCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
            $paper.bind('click', function(e) {
              var image = e.currentTarget.getElementsByClassName('articleimage')[0].src;
+             var date = e.currentTarget.getElementsByClassName('paper-date')[0].textContent;
              var id = e.currentTarget.getElementsByClassName('paper-description')[0].textContent;
              var title = e.currentTarget.getElementsByClassName('paper-text')[0].textContent;
              var content = e.currentTarget.getElementsByClassName('paper-text')[1].textContent;
+             $('#lightbox > h4').text(date);
              $('#lightbox > img').attr('src', image);
              $('.user-information > p').text(id);
              $('.user-information-text > h3').text(title);
@@ -185,6 +189,7 @@
     </section>
     <div id='darken-background'>
       <div id='lightbox'>
+        <h4>날짜</h4>
         <img src='welcome.jpg'>
         <div class="user-information">
         <p>아이디</p>
