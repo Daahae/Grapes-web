@@ -16,8 +16,6 @@ $(document).ready(function() {
         hideLightBox();
       });
 
-      $('.paper').click(function() { showLightBox(); });
-
       $('#lightbox').click(function(event) {
         event.stopPropagation()
       });
