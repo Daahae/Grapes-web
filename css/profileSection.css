@@ -79,6 +79,7 @@ div {
     height: 80%;
     padding: 5px;
     background-color: #F5F5F5;
+    word-wrap: break-word;
   }
 
   footer {
