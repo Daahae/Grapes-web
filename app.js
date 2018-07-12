@@ -147,8 +147,9 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/temp', (req, res) => {
+  var name = req.session.displayName;
 
-  res.redirect('/pom.html');
+  res.render('pom.html',{name: name});
 });
 // Delete temporary xml used for image update.
 app.get('/tempdelete', function(req, res) {
