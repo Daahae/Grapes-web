@@ -93,7 +93,6 @@ app.get('/login',function(req,res){//로그인
   } else {
     res.redirect('/');
   }
-
 });
 
 app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 받음
