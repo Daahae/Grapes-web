@@ -26,10 +26,10 @@
     <script type = "text/javascript">
     $(document).ready(function(){
         if(<%=flag%> =="-1"){
-          swal("해당 아이디가 존재하지 않습니다.");
+          swal("해당 아이디가 존재하지 않습니다.","다시 입력하세요!","error");
         }
         else if(<%=flag%> =="1"){
-          swal("해당 아이디가 존재합니다.");
+          swal("해당 아이디가 존재합니다.","추가하거나 삭제해보세요!","success");
         }
     });
     function sub(url){
