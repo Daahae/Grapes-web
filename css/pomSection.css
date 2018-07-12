@@ -66,6 +66,7 @@
 }
 
 #pom-section > input:nth-last-child(1):hover {
+  cursor: pointer;
   background-color: #CCCCCC;
 }
 
@@ -78,6 +79,7 @@
 }
 
 #pom-section > input:nth-last-child(2):hover {
+  cursor: pointer;
   background-color: #CCCCCC;
 }
 

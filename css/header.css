@@ -1,6 +1,6 @@
 header {
   background-color: #8A2BE2;
-  height: 40px;
+  height: 45px;
   width: 100%;
   position:fixed;
   z-index: 9999;
@@ -16,7 +16,7 @@ header > .head > a{
 }
 
 header > .head > a > img {
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 header > .head > a:hover {
