@@ -370,11 +370,6 @@ app.post('/profile_delete',function(req,res){//삭제
 
 });
 
-
-
-
-
-
 app.listen(3000,function(){// 3000번 포트 listen
 
   console.log('Connected, 3000 port!!');
