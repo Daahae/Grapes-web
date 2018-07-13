@@ -242,6 +242,33 @@ app.get('/profile',function(req,res){// 내 정보 보기
 
 });
 
+app.get('/register',function(req, res){// 회원가입
+
+  res.render('signup.html');
+});
+
+
+
+
+app.post('/register_receiver',function(req, res){// 회원가입 정보받기
+    var userID = req.body.userID;
+    var password =req.body.username;
+    var username = req.body.password;
+
+
+    var sql = 'INSERT INTO account VALUES (?, ?, ?, ?)';
+    conn.query(sql,[userID, username, password,'0101'],function(err, results, fields){
+        if(err){
+          console.log(err);
+          res.status(500).send('Internal Server Err');
+          }else{
+            console.log('Success');
+            res.redirect('/');
+          }
+    });//삽입
+});
+
+
 app.post('/pom_receiver',function(req, res){// 새글쓰기 백엔드처리
   var  title = req.body.title;
   var  body =req.body.content;
