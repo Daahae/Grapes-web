@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/lightbox.css">
     <style>
       @import url("mainFull.css") only screen and (min-width:850px);
+    
     </style>
     <!--JS-->
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -20,6 +21,7 @@
     <script src="jquery.imagesloaded.min.js"></script>
     <!--무한스크롤 JSON객체를 app.js로부터 넘겨받아 파일로 분리하지 못함-->
     <script>
+
     var tmp = <%- JSON.stringify(article_me) %>
     var dataf = <%- JSON.stringify(article_f) %>
     $(document).ready(function() {
