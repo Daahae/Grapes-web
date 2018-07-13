@@ -31,6 +31,14 @@
         else if(<%=flag%> =="1"){
           swal("해당 아이디가 존재합니다.","추가하거나 삭제해보세요!","success");
         }
+        else if(<%=flag%> =="2"){
+          swal("친구를 추가하였습니다!","친구의 게시물을 볼 수 있습니다.","success");
+        }
+
+        else if(<%=flag%> =="-2"){
+          swal("친구관계를 끊었습니다!","친구가 슬퍼하겠어요..","success");
+        }
+
     });
     function sub(url){
       var form1 = document.getElementById("form1");
