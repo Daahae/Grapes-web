@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Grapes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--아이콘-->
     <link rel="icon" href="/Grape.png">
     <!--css-->
     <link rel="stylesheet" href="/init.css">
@@ -11,11 +12,11 @@
     <link rel="stylesheet" href="/dropdown.css">
     <link rel="stylesheet" href="/profileSection.css">
     <link rel="stylesheet" href="/profileSearch.css">
+    <!--미디어쿼리-->
     <style>
       @import url("mainFull.css") only screen and (min-width:850px);
       @import swal from 'sweetalert';
     </style>
-
     <!--JS-->
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,6 +25,7 @@
     <script src="jquery.imagesloaded.min.js"></script>
     <script src="dropdown.js"></script>
     <script type = "text/javascript">
+    // 친구추가 삭제시 경고창영역
     $(document).ready(function(){
         if(<%=flag%> =="-1"){
           swal("해당 아이디가 존재하지 않습니다.","다시 입력하세요!","error");
@@ -38,20 +40,16 @@
         else if(<%=flag%> =="-2"){
           swal("친구관계를 끊었습니다!","친구가 슬퍼하겠어요..","success");
         }
-
     });
     function sub(url){
       var form1 = document.getElementById("form1");
       form1.action = url;
       form1.submit();
     }
-
-    </script>
-    <script type = "text/javascript">
-
     </script>
   </head>
   <body>
+    <!--프로필 헤더영역-->
     <header>
       <div class="head">
         <a href="/"><img src="/grapebg.png">  Grapes</a>
@@ -61,6 +59,7 @@
                 <a href="/profile"><%= name%></a>
             </li>
         </ul>
+        <!--드롭다운 영역-->
             <ul class="outer-menu">
                 <li>
                     <a href="#"><img src="setting.png" /></a>
@@ -74,9 +73,11 @@
         </div>
       </div>
     </header>
+    <!--상단 공백을 위한 더미영역-->
     <section id="dummy-section">
 
     </section>
+    <!--본인의 프로필이 보여지는 메인영역-->
     <section id="main-section">
       <div class="profile-image">
         <img src= "/<%=img%>">
@@ -94,6 +95,7 @@
         </ul>
       </div>
     </section>
+    <!--친구추가 및 삭제 현재 친구목록을 보여주는 영역-->
     <section id="friend-section">
       <div class="profile-friend">
         <p>친구목록</p>
@@ -110,6 +112,7 @@
         </div>
       </div>
     </section>
+    <!--바닥글 영역-->
     <footer>
       Grapes ⓣ 2018<br />
       <a href="https://github.com/jong4876/Grapes_Web" target="_blank">https://github.com/jong4876/Grapes_Web</a></footer>
