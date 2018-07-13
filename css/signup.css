@@ -1,3 +1,7 @@
+header {
+  position: relative;
+}
+
 .sign-container {
   width: 600px;
   margin: 0 auto;
