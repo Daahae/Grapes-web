@@ -18,17 +18,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
     <script src="jquery.imagesloaded.min.js"></script>
+    <!--무한스크롤 JSON객체를 app.js로부터 넘겨받아 파일로 분리하지 못함-->
     <script>
     var tmp = <%- JSON.stringify(article_me) %>
     var dataf = <%- JSON.stringify(article_f) %>
     $(document).ready(function() {
       var $grid = $('#main-section').masonry({
-
         itemSelector: '.paper'
       });
       var allCnt=tmp.length-1 + dataf.length;
       var meCnt = tmp.length-1;
       var fCnt = dataf.length-1;
+      // 내 계정 정보의 글 append
       var appendDocument = function() {
            var $paper = $('<div><div class="paper-holder"><p class="paper-date">'+tmp[meCnt].time.split('T')[0]+'</p><a><img class="articleimage" width=100% src="'+tmp[meCnt].image+'" /></a></div><p class="paper-description">'+tmp[meCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + tmp[meCnt].title  + '</p><p class="paper-text">' + tmp[meCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
@@ -38,6 +39,7 @@
              var id = e.currentTarget.getElementsByClassName('paper-description')[0].textContent;
              var title = e.currentTarget.getElementsByClassName('paper-text')[0].textContent;
              var content = e.currentTarget.getElementsByClassName('paper-text')[1].textContent;
+             // 라이트박스 설정 추가 선택할시 해당 게시글 정보 전달
              $('#lightbox > h4').text(date);
              $('#lightbox > img').attr('src', image);
              $('.user-information > p').text(id);
@@ -48,11 +50,11 @@
            function showLightBox() {
              $('#darken-background').show();
              $('#darken-background').css('top', $(window).scrollTop());
-
              $('body').css('overflow', 'hidden');
            }
       };
 
+      // 친구정보의 글을 append
       var appendDocument2 = function() {
            var $paper = $('<div><div class="paper-holder"><p class="paper-date">'+dataf[fCnt].time.split('T')[0]+'</p><a><img class="articleimage" width=100% src="'+dataf[fCnt].image+'" /></a></div><p class="paper-description">'+dataf[fCnt].owner+'</p><div class="paper-content"><a class="paper-link"><img class="profileimage" src="http://placehold.it/30x30" /></a><p class="paper-text">' + dataf[fCnt].title  + '</p><p class="paper-text">' + dataf[fCnt].body + '  </p></div></div>').addClass('paper');
            $grid.append($paper).masonry('appended', $paper);
@@ -62,6 +64,7 @@
              var id = e.currentTarget.getElementsByClassName('paper-description')[0].textContent;
              var title = e.currentTarget.getElementsByClassName('paper-text')[0].textContent;
              var content = e.currentTarget.getElementsByClassName('paper-text')[1].textContent;
+             // 라이트박스 설정 추가
              $('#lightbox > h4').text(date);
              $('#lightbox > img').attr('src', image);
              $('.user-information > p').text(id);
@@ -72,11 +75,11 @@
            function showLightBox() {
              $('#darken-background').show();
              $('#darken-background').css('top', $(window).scrollTop());
-
              $('body').css('overflow', 'hidden');
            }
       };
 
+      // 최초 게시글을 올리는 소스
       if(fCnt>=0){
         var a = dataf[fCnt].article_id;
       }else{
@@ -107,11 +110,13 @@
           meCnt-=1;
         }
       }
+
       $(window).scroll(function() {
         var scrollHeight = $(window).scrollTop() + $(window).height();
         var documentHeight = $(document).height();
         console.log($(window).scrollTop(), $(window).height(), documentHeight);
         if (parseInt(scrollHeight) >= documentHeight-1) {
+          // 무한스크롤을 위한 소스
           if(fCnt>=0){
             var a = dataf[fCnt].article_id;
           }else{
@@ -151,11 +156,13 @@
     <script src="lightbox.js"></script>
   </head>
   <body>
+    <!--메인페이지 레이아웃 헤더-->
     <header>
       <div class="head">
         <a href="/">
           <img src="/grapebg.png">  Grapes</a>
         <div class="header-menu">
+          <!--메뉴 드롭다운-->
           <ul class="outer-menu">
               <li>
                   <a href="/profile"><%= name%></a>
@@ -174,7 +181,7 @@
           </div>
         </div>
     </header>
-    <!-- 본문 영역 -->
+    <!-- 본문 영역 무한스크롤 되는 영역-->
     <section id="main-section">
       <div class="paper">
         <div class="paper-holder">
@@ -187,6 +194,7 @@
         </div>
       </div>
     </section>
+    <!--라이트박스 영역, 클릭시 보여짐-->
     <div id='darken-background'>
       <div id='lightbox'>
         <h4>날짜</h4>
@@ -203,11 +211,13 @@
         </div>
       </div>
     </div>
+    <!-- TOP 버튼 -->
     <div class="goTOP">
       <a class="ho" href="#">
         <p>TOP</p>
       </a>
     </div>
+    <!--바닥글-->
     <footer>
       Grapes ⓣ 2018<br />
       <a href="https://github.com/jong4876/Grapes_Web" target="_blank">https://github.com/jong4876/Grapes_Web</a></footer>

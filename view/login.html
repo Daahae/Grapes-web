@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
@@ -12,27 +10,33 @@
     <meta name="author" content="">
     <title>Grapes-Login</title>
     <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="signin.css" rel="stylesheet">
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!--아이콘-->
     <link rel="icon" href="/Grape.png">
+    <!--css-->
     <link rel="stylesheet" href="/login.css">
-
     <!--mediaQuery-->
     <style>
       @import url("loginHalf.css") only screen and (max-width:1215px);
       @import url("loginFull.css") only screen and (min-width:1215px);
     </style>
+    <!--js-->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src = "loginGallery.js"></script>
   </head>
   <body>
+    <!--헤더-->
     <header>
       <div class="head">
-        <a href="/"><img src="/grapebg.png"> Grapes</a>
+        <a ><img src="/grapebg.png"> Grapes</a>
       </div>
     </header>
+    <!--메인섹션-->
     <section id="box">
+      <!--갤러리-->
       <section class="photo">
         <div class="photo-box "data-role="slider" data-width = "500" data-height="300">
           <div class="container">
@@ -47,18 +51,19 @@
             </div>
           </div>
         </div>
+        <!--왼쪽 오른쪽버튼-->
         <div class="photo-input">
           <input type="button" id="left-button" value="←">
           <input type="button" id="right-button" value="→">
         </div>
       </section>
+      <!--로그인 뷰-->
       <section class="info">
         <form class="form-signin" action="/login_receiver" method="post">
           <div class="subtitle">
             Sign In</div>
           <input class="form-control" id="inputEmail" type="text" name="userID" placeholder="userID" required="" autofocus="">
           <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" required="">
-
           <button class="btn btn-lg btn-primary btn-block" type="submit" style="background: #8A2BE2">Sign In</button>
         </form>
         <form class="form-signin" action="/register" method="get">
@@ -66,6 +71,7 @@
         </form>
       </section>
     </section>
+    <!--바닥글-->
     <footer>
       Grapes ⓣ 2018<br />
       <a href="https://github.com/jong4876/Grapes_Web" target="_blank">https://github.com/jong4876/Grapes_Web</a></footer>
