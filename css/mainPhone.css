@@ -94,3 +94,9 @@ body {
 .user-information-text > p {
   font-size: 5px;
 }
+
+#google_translate_element {
+  top: 50px;
+  left: 10px;
+  z-index: 20000;
+}

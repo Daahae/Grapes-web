@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="header.css">
 	<link rel="stylesheet" href="dropdown.css">
 	<link rel="stylesheet" href="pomSection.css">
+	<link rel="stylesheet" href="pomSearch.css">
 	<style>
 		@import url("mainPhone.css") only screen and (max-width:400px);
 		@import url("mainHalf.css") only screen and (min-width:400px);
@@ -87,6 +88,12 @@
 				</div>
 			</div>
 	</header>
+	<!--구글번역-->
+	<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'en,ko,ms,zh-CN', layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<!--상단 공백을 두기위한 영역-->
 	<section id="dummy-section">
 
@@ -112,7 +119,7 @@
 		</form>
 		<!--글쓰기 및 취소버튼-->
 		<input type='button' value='취소' onclick="location.href='/'">
-		<input type='button' value='글쓰기' onclick='submitArticle();'>
+		<input type='button' value='글작성' onclick='submitArticle();'>
 	</section>
 	<!--바닥글 영역-->
 	<footer>
