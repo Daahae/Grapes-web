@@ -12,7 +12,7 @@
 #lightbox {
   width: 700px;
   height: 500px;
-  margin: 20px auto; padding: 15px;
+  margin: 50px auto; padding: 15px;
   margin-top: 80px;
   border: 1px solid #333333;
   border-radius: 5px;
@@ -24,13 +24,14 @@
 }
 #lightbox > img:nth-child(2){
   width: 100%;
-  height: 80%;
+  height: 70%;
 }
 
 .user-information {
   overflow: hidden;
   text-align: left;
   background-color: #F2F0F0;
+  height: 25%;
 }
-.user-information-image { float: left; width: 70px; }
-.user-information-text { float: right; width: 620px; }
+.user-information-image { float: left; width: 8%; }
+.user-information-text { float: right; width: 90%; height: 100%;}

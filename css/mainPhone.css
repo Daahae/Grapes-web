@@ -1,0 +1,96 @@
+.head {
+  width: 100%;
+}
+
+header > .head > a{
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.outer-menu{
+  width: 60px; height: 20px;
+  padding-top: 12px;
+}
+
+.outer-menu:nth-child(1) > li {
+  font-size: 1em;
+}
+
+.inner-menu > li > a{
+  font-size: 8px;
+}
+header {
+  width: 100%;
+}
+body {
+  width: 100%;
+}
+
+#dummy-section {
+  margin: 0;
+  width: 100%;
+}
+
+#main-section{
+  margin: 0;
+  width:100%;
+}
+
+.profile-image {
+  width: 50%;
+}
+
+.profile-info {
+  width: 50%;
+}
+
+#friend-section {
+  margin: 0;
+  width: 100%;
+}
+
+.profile-friend {
+  width: 95%;
+}
+
+.profile-info > ul > li > p {
+  font-size: 15px;
+  padding-top: 20px;
+}
+
+.profile-info > ul > li > p:nth-child(1) {
+  width: 30%;
+}
+
+.profile-info > ul > li > p:nth-child(2) {
+  width: 50%;
+}
+
+.friend-search {
+  width: 50%;
+}
+
+.goTOP {
+  bottom: 20px;
+  right: 10px;
+  z-index: 9999;
+}
+
+#pom-section {
+  width:95%;
+}
+
+.pom-title > input {
+  width: 70%;
+}
+
+#lightbox {
+  width: 80%;
+  height: 60%;
+}
+
+.user-information-text > p {
+  font-size: 5px;
+}
