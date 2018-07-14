@@ -30,6 +30,10 @@ header > .head > a{
   padding-top: 20px;
 }
 
+.sign-container {
+  width: 90%;
+}
+
 footer {
   margin-top: 0px;
 }
