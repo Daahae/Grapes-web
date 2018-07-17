@@ -85,8 +85,11 @@ app.get('/',function(req,res){// 홈
 
 app.get('/login',function(req,res){//로그인
   var newDate = new Date();
+
+
+
   function convertUTCDateToLocalDate(date) {
-    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);//한시간동안 세션 유지
 
     var offset = date.getTimezoneOffset() / 60;
     var hours = date.getHours();
@@ -140,7 +143,6 @@ app.post('/login_receiver',function(req,res){// 홈에서 로그인 정보를 �
     }
       if(cnt == 0)// 로그인 실패시
         res.redirect('/');
-
     });
 });
 
@@ -346,8 +348,8 @@ app.post('/profile_insert',function(req,res){//친구추가
 app.post('/profile_search',function(req,res){//검색
   var tid = req.body.search_ID; // 받아온 아이디
   console.log(tid);
-  var sql = 'select * from account where id = ?';// 해당아이디 여부 검색
-  conn.query(sql,[tid],function(err, results, fields){
+  var sql = 'select * from account where id = ? and id != ?';// 해당아이디 여부 검색
+  conn.query(sql,[tid, req.session.userID],function(err, results, fields){
       if(err){
         res.status(500).send('Internal Server Err');
       }else if(results.length == 0){
