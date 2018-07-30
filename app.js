@@ -40,7 +40,7 @@ app.use(session({
 var conn = mysql.createConnection({//db계정 로그인
   host     : 'localhost',
   user     : 'root',
-  password : '000000',
+  password : '111111',// 수정 필
   database : 'sns_project3'
 });
 
@@ -157,7 +157,7 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.get('/temp', (req, res) => {
+app.get('/temp', (req, res) => {// 새글쓰기 temp
   var name = req.session.displayName;
 
   res.render('pom.html',{name: name});
@@ -257,7 +257,7 @@ app.post('/register_receiver',function(req, res){// 회원가입 정보받기
 
 
     var sql = 'INSERT INTO account VALUES (?, ?, ?, ?)';
-    conn.query(sql,[userID, username, password,'0101'],function(err, results, fields){
+    conn.query(sql,[userID, username, password,'worldcup.jpg'],function(err, results, fields){
         if(err){
           console.log(err);
           res.status(500).send('Internal Server Err');
@@ -410,7 +410,7 @@ app.post('/profile_delete',function(req,res){//삭제
 
 });
 
-app.listen(3000,function(){// 3000번 포트 listen
+app.listen(3443,function(){// 3000번 포트 listen
 
-  console.log('Connected, 3000 port!!');
+  console.log('Connected, 3443 port!!');
 });
