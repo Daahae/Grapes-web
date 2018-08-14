@@ -46,7 +46,7 @@ var conn = mysql.createConnection({//db계정 로그인
 
 conn.connect();
 //기본 설정들
-var sql = 'select * from article';
+
 
 
 app.get('/',function(req,res){// 홈
